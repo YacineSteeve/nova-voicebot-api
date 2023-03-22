@@ -1,7 +1,7 @@
 {
     "name": "nova-voicebot-api",
     "version": "1.0.0",
-    "description": "API for Nova Voicebot",
+    "description": "API for Nova VoiceBot",
     "license": "MIT",
     "private": true,
     "main": "dist/main.js",
@@ -42,5 +42,25 @@
     "nodemonConfig": {
         "ext": "ts,js,json"
     },
-    "author": "Yacine BOUKARI <steeveboukari9@gmail.com>"
+    "author": "Yacine BOUKARI <steeveboukari9@gmail.com>",
+    "repository": "https://github.com/YacineSteeve/nova-voicebot-api.git",
+    "keywords": [
+        "nova",
+        "voicebot",
+        "api",
+        "nodejs",
+        "typescript",
+        "express",
+        "mongodb",
+        "openai",
+        "gpt3",
+        "chatbot",
+        "chatgpt",
+        "text-generation",
+        "text-to-speech",
+        "tts",
+        "speech-to-text",
+        "stt",
+        "ai"
+    ]
 }
