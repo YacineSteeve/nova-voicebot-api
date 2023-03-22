@@ -13,7 +13,7 @@
         "start": "yarn run build && node .",
         "dev": "yarn run build && nodemon .",
         "test": "echo \"Error: no test specified\" && exit 1",
-        "clean": "rm -r dist/"
+        "clean": "rm -r dist/ || true"
     },
     "dependencies": {
         "axios": "^1.2.3",
