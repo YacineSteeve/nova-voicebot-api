@@ -2,13 +2,11 @@
     "name": "nova-voicebot-api",
     "version": "1.0.0",
     "description": "API for Nova Voicebot",
-    "author": "Yacine BOUKARI <steeveboukari9@gmail.com>",
     "license": "MIT",
     "private": true,
     "main": "dist/main.js",
     "scripts": {
         "build": "yarn run clean && tsc",
-        "add-build": "git add dist",
         "start": "yarn run build && node .",
         "dev": "yarn run build && nodemon .",
         "test": "echo \"Error: no test specified\" && exit 1",
@@ -41,5 +39,6 @@
     },
     "nodemonConfig": {
         "ext": "ts,js,json"
-    }
+    },
+    "author": "Yacine BOUKARI <steeveboukari9@gmail.com>"
 }
