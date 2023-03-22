@@ -1,10 +1,16 @@
 {
     "version": 2,
-    "installCommand": "yarn install",
-    "buildCommand": "yarn build",
-    "outputDirectory": "dist",
-    "devCommand": "yarn dev",
-    "functions": {
-        "./main.js": {}
-    }
+    "builds": [
+        {
+            "src": "dist/main.js",
+            "use": "@vercel/node",
+            "config": { "includeFiles": ["dist/**"] }
+        }
+    ],
+    "routes": [
+        {
+            "src": "/(.*)",
+            "dest": "dist/main.js"
+        }
+    ]
 }
