@@ -4,7 +4,7 @@
     "public": true,
     "builds": [
         {
-            "src": "src/main.ts",
+            "src": "dist/main.ts",
             "use": "@vercel/node",
             "config": { 
                 "includeFiles": ["dist/**"]
