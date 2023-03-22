@@ -1,5 +1,4 @@
 .DS_Store
-client/node_modules
 /dist
 dist/
 
