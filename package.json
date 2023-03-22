@@ -1,6 +1,6 @@
 {
-    "name": "server",
-    "version": "0.1.0",
+    "name": "nova-voicebot-api",
+    "version": "1.0.0",
     "private": true,
     "main": "dist/main.js",
     "scripts": {
