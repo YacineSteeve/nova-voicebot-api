@@ -6,7 +6,7 @@
     "private": true,
     "main": "dist/main.js",
     "scripts": {
-        "build": "yarn run clean && tsc",
+        "build": "yarn run clean && npx --package typescript tsc",
         "start": "yarn run build && node .",
         "dev": "yarn run build && nodemon .",
         "test": "echo \"Error: no test specified\" && exit 1",
