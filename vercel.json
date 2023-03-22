@@ -2,6 +2,8 @@
     "name": "nova-voicebot-api",
     "version": 2,
     "public": true,
+    "buildCommand": "yarn build",
+    "installCommand": "yarn install",
     "builds": [
         {
             "src": "dist/main.js",
