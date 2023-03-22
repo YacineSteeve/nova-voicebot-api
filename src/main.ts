@@ -10,7 +10,7 @@ import { sendEmail } from './controllers/mailing';
 import { getCompletion, getSpeech } from './endpoints';
 import { authorizeApiRequest } from './middlewares';
 
-const PORT: string | number = process.env.SERVER_PORT || 8000;
+const PORT: string | number = process.env.PORT || 5000;
 
 const app: Express = express();
 
