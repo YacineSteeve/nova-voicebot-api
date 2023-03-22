@@ -4,11 +4,11 @@ import cors from 'cors';
 import morgan from 'morgan';
 import '../env-config';
 import '../multi-processing';
-import { connection } from '../database';
-import { createUser, getUser, getUserByToken, deleteUser } from '../controllers/user';
-import { sendEmail } from '../controllers/mailing';
-import { getCompletion, getSpeech } from '../endpoints';
-import { authorizeApiRequest } from '../middlewares';
+import { connection } from './database';
+import { createUser, getUser, getUserByToken, deleteUser } from './controllers/user';
+import { sendEmail } from './controllers/mailing';
+import { getCompletion, getSpeech } from './endpoints';
+import { authorizeApiRequest } from './middlewares';
 
 const PORT: string | number = process.env.SERVER_PORT || 8000;
 

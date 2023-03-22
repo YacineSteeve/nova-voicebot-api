@@ -7,6 +7,8 @@
     "private": true,
     "main": "dist/api/main.js",
     "scripts": {
+        "prebuild": "yarn clean",
+        "pre-prod": "yarn clean && yarn build",
         "ts.check": "tsc --project tsconfig.json",
         "build": "yarn run clean && tsc",
         "add-build": "git add dist",
