@@ -1,6 +1,6 @@
 import type { Request, Response } from 'express';
 import { redirectCompletion, redirectModeration } from '../redirections';
-import highScoreCategories from '../../lib/high-score-categories';
+import highScoreCategories from '../lib/high-score-categories';
 
 export function getCompletion(request: Request, response: Response) {
     request.accepts('text/plain');

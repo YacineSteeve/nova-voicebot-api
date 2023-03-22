@@ -1,14 +1,16 @@
 {
     "name": "nova-voicebot-api",
     "version": "1.0.0",
+    "description": "API for Nova Voicebot",
+    "license": "MIT",
     "private": true,
     "main": "dist/main.js",
     "scripts": {
-        "build": "tsc",
-        "prestart": "yarn run build",
-        "start": "node .",
-        "dev": "rm -r dist/ && yarn run build && nodemon .",
-        "test": "echo \"Error: no test specified\" && exit 1"
+        "build": "yarn run clean && tsc",
+        "start": "yarn run build && node .",
+        "dev": "yarn run build && nodemon .",
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "clean": "rm -r dist/ || true"
     },
     "dependencies": {
         "axios": "^1.2.3",
@@ -39,5 +41,6 @@
     },
     "nodemonConfig": {
         "ext": "ts,js,json"
-    }
+    },
+    "author": "Yacine BOUKARI <steeveboukari9@gmail.com>"
 }
