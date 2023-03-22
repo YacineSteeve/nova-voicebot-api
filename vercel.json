@@ -1,0 +1,10 @@
+{
+    "version": 2,
+    "name": "nova-voicebot-api",
+    "functions": {
+         "src/main.js": {
+             "includeFiles": "src/**/*"
+         }
+    }
+}
+
