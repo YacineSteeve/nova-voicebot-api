@@ -11,7 +11,7 @@
         "dev": "yarn build && nodemon .",
         "test": "echo \"Error: no test specified\" && exit 1",
         "clean": "rm -r dist/ || true",
-        "compile": "yarn add typescript && npx tsc"
+        "compile": "npx -p typescript tsc --init"
     },
     "dependencies": {
         "axios": "^1.2.3",
