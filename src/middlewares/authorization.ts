@@ -2,7 +2,7 @@ import type {NextFunction, Request, Response} from 'express';
 import * as JWT from 'jsonwebtoken';
 
 export function authorizeApiRequest(request: Request, response: Response, next: NextFunction) {
-    const authToken = request.get('authorization').substring(7);
+    const authToken = request.get('authorization')?.substring(7);
 
     if (!authToken) {
         response

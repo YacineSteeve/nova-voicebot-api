@@ -7,8 +7,12 @@ export function getSpeech(request: Request, response: Response) {
 
     const queryParams = {
         text: request.query['text'] as string,
-        lang: request.query['lang'] as string
-    };
+        lang: request.query['lang'] as string,
+        speed: request.query['speed'] as string,
+        codec: request.query['codec'] as string,
+        format: request.query['format'] as string,
+        b64: request.query['b64'] as string,
+    }
 
     if (!queryParams.text || queryParams.text === '') {
         response
@@ -16,16 +20,6 @@ export function getSpeech(request: Request, response: Response) {
             .json({
                 success: false,
                 error: 'SERVER ERROR: Missing `text` parameter to speech request.'
-            });
-        return
-    }
-
-    if (!queryParams.lang || queryParams.lang === '') {
-        response
-            .status(500)
-            .json({
-                success: false,
-                error: 'SERVER ERROR: Missing `lang` parameter to speech request.'
             });
         return
     }
