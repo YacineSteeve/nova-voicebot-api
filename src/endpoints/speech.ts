@@ -36,8 +36,7 @@ export function getSpeech(request: Request, response: Response) {
                 .status(error.response.status)
                 .json({
                     success: false,
-                    error: `${error.response.statusText.toUpperCase()}: ` +
-                    `Invalid language '${JSON.parse(error.response.config.data).lang}'`
+                    error: 'SERVER ERROR: ' + error
                 });
         });
 }
