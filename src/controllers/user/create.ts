@@ -3,6 +3,9 @@ import * as Bcrypt from 'bcryptjs';
 import { User } from '../../database';
 
 export function createUser(request: Request, response: Response) {
+    request.accepts('application/json');
+    response.type('application/json');
+
     if (!request.body.email || !request.body.password) {
         response
             .status(500)

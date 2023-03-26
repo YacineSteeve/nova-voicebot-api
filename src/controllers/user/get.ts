@@ -4,6 +4,9 @@ import * as JWT from 'jsonwebtoken';
 import { User } from '../../database';
 
 export function getUser(request: Request, response: Response) {
+    request.accepts('application/json');
+    response.type('application/json');
+
     if (!request.body.email || !request.body.password) {
         response
             .status(500)
@@ -44,7 +47,10 @@ export function getUser(request: Request, response: Response) {
                     id: user._id,
                     email: user.email
                 },
-                process.env.JWT_SECRET
+                process.env.JWT_SECRET,
+                {
+                    expiresIn: '1d'
+                }
             );
 
             response
@@ -64,6 +70,9 @@ export function getUser(request: Request, response: Response) {
 }
 
 export function getUserByToken(request: Request, response: Response) {
+    request.accepts('application/json');
+    response.type('application/json');
+
     if (!request.body.token || request.body.token === '') {
         response
             .status(500)

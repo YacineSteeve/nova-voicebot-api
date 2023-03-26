@@ -5,6 +5,9 @@ import { transporter } from './transporter';
 import emailTemplate from './template';
 
 export function sendEmail(request: Request, response: Response) {
+    request.accepts('application/json');
+    response.type('application/json');
+
     if (!request.body.email || request.body.email === '') {
         response
             .status(500)

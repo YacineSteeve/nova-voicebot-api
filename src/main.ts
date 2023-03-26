@@ -22,7 +22,7 @@ if (process.env.NODE_ENV === 'development') {
 }
 
 app.get('/', (req, res) => {
-    res.send('Welcome to Nova\'s API!');
+    res.send('Welcome to the NOVA API!');
 });
 
 app.post('/user/signup', createUser);
@@ -37,9 +37,9 @@ app.post('/support/contact', sendEmail);
 
 app.use('/api', authorizeApiRequest);
 
-app.get('/api/completion', getCompletion);
+app.post('/api/completion', getCompletion);
 
-app.get('/api/speech', getSpeech);
+app.post('/api/speech', getSpeech);
 
 app.listen(PORT, async () => {
     const db = await connection;
