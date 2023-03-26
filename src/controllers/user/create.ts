@@ -6,12 +6,24 @@ export function createUser(request: Request, response: Response) {
     request.accepts('application/json');
     response.type('application/json');
 
-    if (!request.body.email || !request.body.password) {
+    if (!request.body.email || request.body.email === '') {
         response
-            .status(500)
+            .status(400)
             .json({
                 success: false,
-                error: 'SERVER ERROR: Missing credentials parameter to signup.'
+                error: 'ERROR: Missing email to sign up.',
+                fields: ['email']
+            });
+        return
+    }
+
+    if (!request.body.password || request.body.password === '') {
+        response
+            .status(400)
+            .json({
+                success: false,
+                error: 'ERROR: Missing password to sign up.',
+                fields: ['password']
             });
         return
     }
@@ -20,10 +32,10 @@ export function createUser(request: Request, response: Response) {
         .then(user => {
             if (user) {
                 response
-                    .status(500)
+                    .status(400)
                     .json({
                         success: false,
-                        error: 'SERVER ERROR: User already exists',
+                        error: 'ERROR: User already exists',
                         fields: ['email']
                     })
                 return
@@ -41,10 +53,10 @@ export function createUser(request: Request, response: Response) {
 
             if (validationError) {
                 response
-                    .status(500)
+                    .status(400)
                     .json({
                         success: false,
-                        error: 'SERVER ERROR: ' + validationError,
+                        error: 'ERROR: ' + validationError,
                         fields: Object.keys(validationError.errors)
                     })
                 return
@@ -71,7 +83,7 @@ export function createUser(request: Request, response: Response) {
                     .status(500)
                     .json({
                         success: false,
-                        error: 'SERVER ERROR: ' + error
+                        error: 'ERROR: ' + error
                     });
             })
         }).catch(error => {
@@ -79,7 +91,7 @@ export function createUser(request: Request, response: Response) {
                 .status(500)
                 .json({
                     success: false,
-                    error: 'SERVER ERROR: ' + error
+                    error: 'ERROR: ' + error
                 });
         });
 }

@@ -9,7 +9,7 @@ export function authorizeApiRequest(request: Request, response: Response, next: 
             .status(401)
             .json({
                 success: false,
-                error: 'SERVER ERROR: Access denied. No token provided.'
+                error: 'ERROR: Access denied. No token provided.'
             });
         return
     }
@@ -19,10 +19,10 @@ export function authorizeApiRequest(request: Request, response: Response, next: 
         next();
     } catch (error) {
         response
-            .status(500)
+            .status(403)
             .json({
                 success: false,
-                error: `SERVER ERROR: Invalid token (${error.message}).`
+                error: `ERROR: Invalid token (${error.message}).`
             });
     }
 }

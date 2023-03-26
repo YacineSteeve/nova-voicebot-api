@@ -10,10 +10,10 @@ export function sendEmail(request: Request, response: Response) {
 
     if (!request.body.email || request.body.email === '') {
         response
-            .status(500)
+            .status(400)
             .json({
                 success: false,
-                error: 'SERVER ERROR: Email is required',
+                error: 'ERROR: Email is required',
                 fields: ['email'],
             })
         return;
@@ -21,10 +21,10 @@ export function sendEmail(request: Request, response: Response) {
 
     if (!request.body.message || request.body.message === '') {
         response
-            .status(500)
+            .status(400)
             .json({
                 success: false,
-                error: 'SERVER ERROR: Message is required',
+                error: 'ERROR: Message is required',
                 fields: ['message'],
             })
         return;
@@ -38,7 +38,7 @@ export function sendEmail(request: Request, response: Response) {
                 .status(500)
                 .json({
                     success: false,
-                    error: 'SERVER ERROR: Email could not be sent',
+                    error: 'ERROR: Message can not be sent: ' + error.message,
                 });
 
             canSendEmail = false;
@@ -70,17 +70,15 @@ export function sendEmail(request: Request, response: Response) {
                 .status(500)
                 .json({
                     success: false,
-                    error: 'SERVER ERROR: Email could not be sent',
+                    error: 'ERROR: Message can not be sent: ' + error.message,
                 });
             return;
         }
 
-        response
-            .status(200)
-            .json({
-                success: true,
-                message: 'Message sent successfully',
-                info,
-            });
+        response.json({
+            success: true,
+            message: 'Message sent successfully',
+            info,
+        });
     });
 }

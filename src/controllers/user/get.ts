@@ -7,13 +7,24 @@ export function getUser(request: Request, response: Response) {
     request.accepts('application/json');
     response.type('application/json');
 
-    if (!request.body.email || !request.body.password) {
+    if (!request.body.email || request.body.email === '') {
         response
-            .status(500)
+            .status(400)
             .json({
                 success: false,
-                error: 'SERVER ERROR: Missing credentials (email or password) to login.',
-                fields: ['email', 'password']
+                error: 'ERROR: Missing email address to login.',
+                fields: ['email']
+            });
+        return
+    }
+
+    if (!request.body.password || request.body.password === '') {
+        response
+            .status(400)
+            .json({
+                success: false,
+                error: 'ERROR: Missing password to login.',
+                fields: ['password']
             });
         return
     }
@@ -22,10 +33,10 @@ export function getUser(request: Request, response: Response) {
         .then(user => {
             if (!user) {
                 response
-                    .status(500)
+                    .status(400)
                     .json({
                         success: false,
-                        error: 'SERVER ERROR: User not found',
+                        error: 'ERROR: User not found.',
                         fields: ['email']
                     });
                 return
@@ -33,10 +44,10 @@ export function getUser(request: Request, response: Response) {
 
             if (!Bcrypt.compareSync(request.body.password, user.password)) {
                 response
-                    .status(500)
+                    .status(403)
                     .json({
                         success: false,
-                        error: 'SERVER ERROR: Wrong password',
+                        error: 'ERROR: Wrong password.',
                         fields: ['password']
                     });
                 return
@@ -53,18 +64,17 @@ export function getUser(request: Request, response: Response) {
                 }
             );
 
-            response
-                .json({
-                    success: true,
-                    token
-                });
+            response.json({
+                success: true,
+                token
+            });
         })
         .catch(error => {
             response
                 .status(500)
                 .json({
                     success: false,
-                    error: 'SERVER ERROR: ' + error
+                    error: 'ERROR: ' + error
                 });
         });
 }
@@ -75,10 +85,10 @@ export function getUserByToken(request: Request, response: Response) {
 
     if (!request.body.token || request.body.token === '') {
         response
-            .status(500)
+            .status(401)
             .json({
                 success: false,
-                error: 'SERVER ERROR: Missing authentication token. Use /user/login to get one.'
+                error: 'ERROR: Missing authentication token. Use /user/login to get one.'
             });
         return
     }
@@ -93,29 +103,38 @@ export function getUserByToken(request: Request, response: Response) {
             .status(500)
             .json({
                 success: false,
-                error: 'SERVER ERROR: Unable to verify token. ' + error
+                error: 'ERROR: Unable to verify token: ' + error
             });
         return
     }
 
-    User.findOne({email: decoded.email}).then(user => {
+    if (!decoded) {
+        response
+            .status(403)
+            .json({
+                success: false,
+                error: 'ERROR: Invalid token.'
+            });
+        return
+    }
+
+    User.findOne({_id: decoded.id}).then(user => {
         if (!user) {
             response
-                .status(500)
+                .status(400)
                 .json({
                     success: false,
-                    error: 'SERVER ERROR: User not found',
+                    error: 'ERROR: User not found.',
                 });
             return
         }
 
-        response
-            .json({
-                success: true,
-                user: {
-                    username: user.username,
-                    email: user.email,
-                }
-            });
+        response.json({
+            success: true,
+            user: {
+                username: user.username,
+                email: user.email,
+            }
+        });
     })
 }

@@ -16,16 +16,26 @@ export function getSpeech(request: Request, response: Response) {
 
     if (!queryParams.text || queryParams.text === '') {
         response
-            .status(500)
+            .status(400)
             .json({
                 success: false,
-                error: 'SERVER ERROR: Missing `text` parameter to speech request.'
+                error: 'ERROR: Missing `text` parameter to speech request.'
             });
         return
     }
 
     redirectSpeech(queryParams)
         .then(speechResponse => {
+            if (speechResponse.data.includes('ERROR: ')) {
+                response
+                    .status(500)
+                    .json({
+                        success: false,
+                        error: speechResponse.data
+                    });
+                return;
+            }
+
             response.json({
                 success: true,
                 speech: speechResponse.data
@@ -33,10 +43,10 @@ export function getSpeech(request: Request, response: Response) {
         })
         .catch(error => {
             response
-                .status(error.response.status)
+                .status(500)
                 .json({
                     success: false,
-                    error: 'SERVER ERROR: ' + error
+                    error: 'ERROR: ' + error
                 });
         });
 }
