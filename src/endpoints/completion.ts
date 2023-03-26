@@ -3,13 +3,13 @@ import { redirectCompletion, redirectModeration } from '../redirections';
 import highScoreCategories from '../lib/high-score-categories';
 
 export function getCompletion(request: Request, response: Response) {
-    request.accepts('text/plain');
+    request.accepts('application/json');
     response.type('application/json');
 
     const MODERATION_THRESHOLD: number = 0.001;
     const queryParams = {
-        prompt: request.query['prompt'] as string,
-        user: request.query['user'] as string
+        prompt: request.body.prompt,
+        user: request.body.user
     };
 
     if (!queryParams.prompt || queryParams.prompt === '') {

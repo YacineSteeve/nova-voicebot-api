@@ -2,16 +2,16 @@ import type { Request, Response } from 'express';
 import { redirectSpeech } from '../redirections';
 
 export function getSpeech(request: Request, response: Response) {
-    request.accepts('text/plain');
+    request.accepts('application/json');
     response.type('application/json');
 
     const queryParams = {
-        text: request.query['text'] as string,
-        lang: request.query['lang'] as string,
-        speed: request.query['speed'] as string,
-        codec: request.query['codec'] as string,
-        format: request.query['format'] as string,
-        b64: request.query['b64'] as string,
+        text: request.body.text,
+        lang: request.body.lang,
+        speed: request.body.speed,
+        codec: request.body.codec,
+        format: request.body.format,
+        b64: request.body.b64,
     }
 
     if (!queryParams.text || queryParams.text === '') {

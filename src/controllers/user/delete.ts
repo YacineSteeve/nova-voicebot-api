@@ -4,6 +4,9 @@ import * as JWT from 'jsonwebtoken';
 import { User } from '../../database';
 
 export function deleteUser(request: Request, response: Response) {
+    request.accepts('application/json');
+    response.type('application/json');
+
     if (!request.body.token || request.body.token === '') {
         response
             .status(500)
