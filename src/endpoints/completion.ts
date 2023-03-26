@@ -14,20 +14,20 @@ export function getCompletion(request: Request, response: Response) {
 
     if (!queryParams.prompt || queryParams.prompt === '') {
         response
-            .status(500)
+            .status(400)
             .json({
                 success: false,
-                error: 'SERVER ERROR: Missing `prompt` parameter to completion request.'
+                error: 'ERROR: Missing `prompt` parameter to completion request.'
             });
         return
     }
 
     if (!queryParams.user || queryParams.user === '') {
         response
-            .status(500)
+            .status(400)
             .json({
                 success: false,
-                error: 'SERVER ERROR: Missing `user` parameter to completion request.'
+                error: 'ERROR: Missing `user` parameter to completion request.'
             });
         return
     }
@@ -43,9 +43,10 @@ export function getCompletion(request: Request, response: Response) {
                 || highScores.found
             ) {
                 response
-                    .status(400)
+                    .status(451)
                     .json({
                         success: false,
+                        error: 'ERROR: Prompt is not suitable for completion.',
                         categories: highScores.categories
                     })
             } else {
@@ -61,7 +62,8 @@ export function getCompletion(request: Request, response: Response) {
                             .status(error.response.status)
                             .json({
                                 success: false,
-                                error: 'SERVER ERROR: Completion went wrong'
+                                error: 'ERROR: Completion went wrong: '
+                                    + error.response.data.error.message
                             });
                     });
             }
@@ -71,7 +73,8 @@ export function getCompletion(request: Request, response: Response) {
                 .status(error.response.status)
                 .json({
                     success: false,
-                    error: 'SERVER ERROR: Moderation went wrong'
+                    error: 'ERROR: Moderation went wrong: '
+                        + error.response.data.error.message
                 });
         });
 }
