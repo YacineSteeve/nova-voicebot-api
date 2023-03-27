@@ -4,6 +4,10 @@ This is an Express API that provides various endpoints to access the NOVA platfo
 
 ## Usage
 
+The API is hosted on Heroku. So you can use it without having to install it locally.
+
+#### Base URL: [https://api-nova-voicebot.herokuapp.com](https://api-nova-voicebot.herokuapp.com)
+
 Here's a list of all the available endpoints:
 
 ### Welcome
