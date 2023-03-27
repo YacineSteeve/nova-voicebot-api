@@ -1,6 +1,6 @@
 # NOVA API
 
-This is an Express API that provides various endpoints to access the NOVA platform. 
+This is an Express API that provides various endpoints to __build applications__ that can generate __text completion__ and __speech synthesis__ using the __OpenAI's GPT-3 model__ and the __VoiceRSS API__.
 
 ## Usage
 
