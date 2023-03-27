@@ -7,7 +7,7 @@ import './multi-processing';
 import { connection } from './database';
 import { createUser, getUser, getUserByToken, deleteUser } from './controllers/user';
 import { sendEmail } from './controllers/mailing';
-import { getCompletion, getSpeech } from './endpoints';
+import { getCompletion, getSpeech } from './services';
 import { authorizeApiRequest } from './middlewares';
 
 const PORT: string | number = process.env.PORT || 5000;
