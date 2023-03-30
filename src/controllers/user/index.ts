@@ -1,5 +1,13 @@
-import { createUser } from './create';
-import { getUser, getUserByToken } from './get';
+import { signupUser } from './signup';
+import { loginUser } from './login';
+import { infoUser } from './info';
 import { deleteUser } from './delete';
 
-export { createUser, getUser, getUserByToken, deleteUser };
+const userController = {
+    signupUser,
+    loginUser,
+    infoUser,
+    deleteUser,
+};
+
+export default userController;

@@ -2,12 +2,10 @@ import express from 'express';
 import type { Express } from 'express';
 import cors from 'cors';
 import morgan from 'morgan';
-import './env-config';
-import './multi-processing';
+import './config/env-config';
+import './config/multi-processing';
 import { connection } from './database';
-import { createUser, getUser, getUserByToken, deleteUser } from './controllers/user';
-import { sendEmail } from './controllers/mailing';
-import { getCompletion, getSpeech } from './services';
+import { apiRouter, userRouter, supportRouter } from './routes';
 import { authorizeApiRequest } from './middlewares';
 
 const PORT: string | number = process.env.PORT || 5000;
@@ -25,21 +23,13 @@ app.get('/', (req, res) => {
     res.send('Welcome to the NOVA API!');
 });
 
-app.post('/user/signup', createUser);
+app.use('/user', userRouter);
 
-app.post('/user/login', getUser);
-
-app.post('/user/userinfo', getUserByToken);
-
-app.post('/user/delete', deleteUser);
-
-app.post('/support/contact', sendEmail);
+app.use('/support', supportRouter);
 
 app.use('/api', authorizeApiRequest);
 
-app.post('/api/completion', getCompletion);
-
-app.post('/api/speech', getSpeech);
+app.use('/api', apiRouter);
 
 app.listen(PORT, async () => {
     const db = await connection;

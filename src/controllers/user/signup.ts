@@ -1,13 +1,13 @@
 import type { Request, Response } from 'express';
 import userService from '../../services/user';
 
-export async function deleteUser(request: Request, response: Response) {
+export async function signupUser(request: Request, response: Response) {
     request.accepts('application/json');
     response.type('application/json');
 
     try {
-        const res = await userService.deleteUser({
-            token: request.body.token,
+        const res = await userService.createUser({
+            email: request.body.email,
             password: request.body.password
         });
 

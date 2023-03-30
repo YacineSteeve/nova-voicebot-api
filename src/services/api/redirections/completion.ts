@@ -7,7 +7,7 @@ const openaiConfiguration = new Configuration({
 });
 const openai = new OpenAIApi(openaiConfiguration);
 
-interface CompletionRequestData {
+export interface CompletionRequestData {
     prompt: string;
     user: string;
 }
