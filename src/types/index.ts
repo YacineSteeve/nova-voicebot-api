@@ -1,9 +1,14 @@
 import type { SentMessageInfo } from 'nodemailer';
+import type { CreateCompletionResponse } from 'openai';
 
 export interface UserResponse {
     username: string;
     email: string;
 }
+
+export type CompletionResponse = CreateCompletionResponse;
+
+export type SpeechResponse = string;
 
 export interface ServiceResponseData {
     success: boolean;
@@ -12,8 +17,8 @@ export interface ServiceResponseData {
     categories?: string[];
     user?: UserResponse;
     token?: string;
-    completion?: object;
-    speech?: string;
+    completion?: CompletionResponse;
+    speech?: SpeechResponse;
     message?: string;
     info?: SentMessageInfo;
 }

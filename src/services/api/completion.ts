@@ -1,9 +1,10 @@
 import { redirectCompletion, redirectModeration } from './redirections';
 import type { CompletionRequestData } from './redirections/completion';
-import type { ServiceResponse } from '../../types';
+import type { ServiceResponse, CompletionResponse } from '../../types';
+import cache from '../../cache';
 import highScoreCategories from '../../utils/high-score-categories';
 
-export async function completion(data: CompletionRequestData): Promise<ServiceResponse> {
+export async function completion(data: CompletionRequestData, cacheSignature?: string): Promise<ServiceResponse> {
     const MODERATION_THRESHOLD: number = 0.001;
     const { prompt, user } = data;
 
@@ -23,6 +24,20 @@ export async function completion(data: CompletionRequestData): Promise<ServiceRe
             data: {
                 success: false,
                 error: 'ERROR: Missing `user` parameter to completion request.'
+            }
+        };
+    }
+
+    const cachedCompletion = cache.get<CompletionResponse>(
+        prompt + (cacheSignature || '')
+    );
+
+    if (cachedCompletion) {
+        return {
+            status: 200,
+            data: {
+                success: true,
+                completion: cachedCompletion
             }
         };
     }
@@ -50,6 +65,11 @@ export async function completion(data: CompletionRequestData): Promise<ServiceRe
         }
 
         const completionResponse = await redirectCompletion(data);
+
+        cache.set(
+            prompt + (cacheSignature || ''),
+            completionResponse.data,
+        );
 
         return {
             status: 200,

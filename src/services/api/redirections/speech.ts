@@ -1,6 +1,7 @@
 import axios from 'axios';
 import type { AxiosResponse } from 'axios';
 import * as process from 'process';
+import { SpeechResponse } from '../../../types';
 
 export interface SpeechRequestData {
     text: string;
@@ -11,7 +12,7 @@ export interface SpeechRequestData {
     b64?: string;
 }
 
-export async function redirectSpeech(data: SpeechRequestData): Promise<AxiosResponse> {
+export async function redirectSpeech(data: SpeechRequestData): Promise<AxiosResponse<SpeechResponse>> {
     return await axios.request({
         method: 'GET',
         url: 'https://api.voicerss.org/',

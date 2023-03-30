@@ -1,6 +1,7 @@
 import { Configuration, OpenAIApi } from 'openai';
 import type {AxiosResponse} from 'axios';
 import * as process from 'process';
+import type { CompletionResponse } from '../../../types';
 
 const openaiConfiguration = new Configuration({
     apiKey: process.env.OPENAI_API_KEY
@@ -12,7 +13,7 @@ export interface CompletionRequestData {
     user: string;
 }
 
-export async function redirectCompletion(data: CompletionRequestData): Promise<AxiosResponse> {
+export async function redirectCompletion(data: CompletionRequestData): Promise<AxiosResponse<CompletionResponse>> {
     return await openai.createCompletion({
         model: 'text-davinci-003',
         prompt: data.prompt,
