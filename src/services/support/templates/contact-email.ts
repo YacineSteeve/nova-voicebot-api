@@ -1,11 +1,11 @@
-interface EmailTemplateOptions {
+interface ContactEmailTemplateOptions {
     name: string;
     email: string;
     content: string;
     subject: string;
 }
 
-const emailTemplate = (options: EmailTemplateOptions): string => {
+const contactEmailTemplate = (options: ContactEmailTemplateOptions): string => {
     return `
         <div>
             <h2>${options.name} has sent you a message</h2>
@@ -30,4 +30,4 @@ const emailTemplate = (options: EmailTemplateOptions): string => {
     `;
 }
 
-export default emailTemplate;
+export default contactEmailTemplate;

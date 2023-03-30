@@ -9,7 +9,7 @@ export function authorizeApiRequest(request: Request, response: Response, next: 
             .status(401)
             .json({
                 success: false,
-                error: 'ERROR: Access denied. No token provided.'
+                error: 'ERROR: Access denied. No token in authorization header.'
             });
         return
     }
