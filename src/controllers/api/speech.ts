@@ -13,7 +13,9 @@ export async function getSpeech(request: Request, response: Response) {
             codec: request.body.codec,
             format: request.body.format,
             b64: request.body.b64
-        });
+        },
+            request.get('authorization')?.substring(7) || ''
+        );
 
         response
             .status(speechResponse.status)

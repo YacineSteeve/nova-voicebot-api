@@ -1,9 +1,9 @@
 import { redirectSpeech } from './redirections';
 import type { SpeechRequestData } from './redirections/speech';
-import type { ServiceResponse } from '../../types';
+import type { ServiceResponse, SpeechResponse } from '../../types';
+import cache from '../../cache';
 
-
-export async function speech(data: SpeechRequestData): Promise<ServiceResponse> {
+export async function speech(data: SpeechRequestData, cacheSignature?: string): Promise<ServiceResponse> {
     const { text } = data;
 
     if (!text || text === '') {
@@ -12,6 +12,20 @@ export async function speech(data: SpeechRequestData): Promise<ServiceResponse> 
             data: {
                 success: false,
                 error: 'ERROR: Missing `text` parameter to speech request.'
+            }
+        };
+    }
+
+    const cachedSpeech = cache.get<SpeechResponse>(
+        JSON.stringify(data) + (cacheSignature || '')
+    );
+
+    if (cachedSpeech) {
+        return {
+            status: 200,
+            data: {
+                success: true,
+                speech: cachedSpeech
             }
         };
     }
@@ -28,6 +42,11 @@ export async function speech(data: SpeechRequestData): Promise<ServiceResponse> 
                 }
             };
         }
+
+        cache.set(
+            JSON.stringify(data) + (cacheSignature || ''),
+            speechResponse.data
+        );
 
         return {
             status: 200,

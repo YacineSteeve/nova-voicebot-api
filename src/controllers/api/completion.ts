@@ -9,7 +9,9 @@ export async function getCompletion(request: Request, response: Response) {
         const completionResponse = await apiService.completion({
             prompt: request.body.prompt,
             user: request.body.user
-        });
+        },
+            request.get('authorization')?.substring(7)
+        );
 
         response
             .status(completionResponse.status)
