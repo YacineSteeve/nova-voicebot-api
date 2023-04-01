@@ -1,5 +1,5 @@
 interface Scores {
-    [ket: string]: number
+    [key: string]: number
 }
 
 interface HighScores {
