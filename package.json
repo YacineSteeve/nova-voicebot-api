@@ -20,13 +20,16 @@
     },
     "engines": {
         "node": ">=16.16.0",
-        "npm": ">=8.17.0"
+        "npm": ">=8.17.0",
+        "yarn": ">=1.22.19"
     },
     "dependencies": {
+        "@jest/globals": "^29.5.0",
         "@types/bcryptjs": "^2.4.2",
         "@types/cors": "^2.8.13",
         "@types/dotenv": "^8.2.0",
         "@types/express": "^4.17.15",
+        "@types/jest": "^29.5.0",
         "@types/jsonwebtoken": "^9.0.1",
         "@types/morgan": "^1.9.4",
         "@types/node": "^18.11.18",

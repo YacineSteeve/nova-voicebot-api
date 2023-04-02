@@ -3,7 +3,7 @@ import { Schema } from 'mongoose';
 
 describe('src/models/user/schema.', () => {
     test('userSchema should be defined', () => {
-        expect(userSchema).toBeDefined();
+        expect(userSchema).toBeTruthy();
     });
 
     test('userSchema should be an instance of Schema', () => {
@@ -11,15 +11,15 @@ describe('src/models/user/schema.', () => {
     });
 
     test('userSchema should have a username property', () => {
-        expect(userSchema.obj.username).toBeDefined();
+        expect(userSchema.obj.username).toBeTruthy();
     });
 
     test('userSchema should have an email property', () => {
-        expect(userSchema.obj.email).toBeDefined();
+        expect(userSchema.obj.email).toBeTruthy();
     });
 
     test('userSchema should have a password property', () => {
-        expect(userSchema.obj.password).toBeDefined();
+        expect(userSchema.obj.password).toBeTruthy();
     });
 
     test('userSchema should be part of the users collection', () => {

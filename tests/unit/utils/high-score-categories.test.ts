@@ -2,7 +2,7 @@ import highScoreCategories from '@utils/high-score-categories';
 
 describe('src/utils/highScoreCategories', () => {
     test('highScoreCategories should be defined', () => {
-        expect(highScoreCategories).toBeDefined();
+        expect(highScoreCategories).toBeTruthy();
     });
 
     test('highScoreCategories should be a function', () => {

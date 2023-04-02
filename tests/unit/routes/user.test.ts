@@ -1,8 +1,8 @@
 import userRouter from '@routes/user';
 
 describe('src/router/user', () => {
-    test('userRouter should be defined', () => {
-        expect(userRouter).toBeDefined();
+    test('userRouter should be defined and exported', () => {
+        expect(userRouter).toBeTruthy();
     });
 
     test('userRouter should be a function', () => {

@@ -1,8 +1,8 @@
 import supportRouter from '@routes/support';
 
 describe('src/router/support', () => {
-    test('supportRouter should be defined', () => {
-        expect(supportRouter).toBeDefined();
+    test('supportRouter should be defined and exported', () => {
+        expect(supportRouter).toBeTruthy();
     });
 
     test('supportRouter should be a function', () => {
