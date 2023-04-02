@@ -4,10 +4,10 @@
     "description": "API for Nova VoiceBot",
     "license": "MIT",
     "private": true,
-    "main": "dist/main.js",
+    "main": "dist/src/main.js",
     "scripts": {
         "clean": "rm -r dist/ || true",
-        "compile": "npx -p typescript tsc",
+        "compile": "npx -p typescript tsc && npx tsc-alias",
         "build": "yarn clean && yarn compile",
         "start": "yarn build && node .",
         "dev": "yarn build && nodemon .",
@@ -65,6 +65,7 @@
         "prettier": "^2.8.7",
         "ts-jest": "^29.0.5",
         "ts-node": "^10.9.1",
+        "tsc-alias": "^1.8.5",
         "typescript": "^5.0.2"
     },
     "nodemonConfig": {
