@@ -1,5 +1,6 @@
 import * as Bcrypt from 'bcryptjs';
 import * as JWT from 'jsonwebtoken';
+import type { JwtPayload } from 'jsonwebtoken';
 import { User } from '../../models/user';
 import type { ServiceResponse } from '../../types';
 
@@ -22,7 +23,7 @@ export async function deleteUser(data: RequestData): Promise<ServiceResponse> {
     }
 
     if (!password || password === '') {
-        return{
+        return {
             status: 401,
             data: {
                 success: false,
@@ -32,10 +33,10 @@ export async function deleteUser(data: RequestData): Promise<ServiceResponse> {
         };
     }
 
-    let decoded: any = null;
+    let decoded: JwtPayload = null;
 
     try {
-        decoded = JWT.verify(token, process.env.JWT_SECRET);
+        decoded = JWT.verify(token, process.env.JWT_SECRET) as JwtPayload;
     } catch (error) {
         return {
             status: 500,
@@ -86,8 +87,8 @@ export async function deleteUser(data: RequestData): Promise<ServiceResponse> {
             status: 200,
             data: {
                 success: true,
-            }
-        }
+            },
+        };
     } catch (error) {
         return {
             status: 500,

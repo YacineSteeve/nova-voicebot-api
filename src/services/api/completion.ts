@@ -4,8 +4,11 @@ import type { ServiceResponse, CompletionResponse } from '../../types';
 import cache from '../../cache';
 import highScoreCategories from '../../utils/high-score-categories';
 
-export async function completion(data: CompletionRequestData, cacheSignature?: string): Promise<ServiceResponse> {
-    const MODERATION_THRESHOLD: number = 0.001;
+export async function completion(
+    data: CompletionRequestData,
+    cacheSignature?: string,
+): Promise<ServiceResponse> {
+    const MODERATION_THRESHOLD = 0.001;
     const { prompt, user } = data;
 
     if (!prompt || prompt === '') {
@@ -13,8 +16,8 @@ export async function completion(data: CompletionRequestData, cacheSignature?: s
             status: 400,
             data: {
                 success: false,
-                error: 'ERROR: Missing `prompt` parameter to completion request.'
-            }
+                error: 'ERROR: Missing `prompt` parameter to completion request.',
+            },
         };
     }
 
@@ -23,22 +26,20 @@ export async function completion(data: CompletionRequestData, cacheSignature?: s
             status: 400,
             data: {
                 success: false,
-                error: 'ERROR: Missing `user` parameter to completion request.'
-            }
+                error: 'ERROR: Missing `user` parameter to completion request.',
+            },
         };
     }
 
-    const cachedCompletion = cache.get<CompletionResponse>(
-        prompt + (cacheSignature || '')
-    );
+    const cachedCompletion = cache.get<CompletionResponse>(prompt + (cacheSignature || ''));
 
     if (cachedCompletion) {
         return {
             status: 200,
             data: {
                 success: true,
-                completion: cachedCompletion
-            }
+                completion: cachedCompletion,
+            },
         };
     }
 
@@ -47,45 +48,38 @@ export async function completion(data: CompletionRequestData, cacheSignature?: s
 
         const highScores = highScoreCategories(
             moderationResponse.data.results[0].category_scores,
-            MODERATION_THRESHOLD
+            MODERATION_THRESHOLD,
         );
 
-        if (
-            moderationResponse.data.results[0].flagged
-            || highScores.found
-        ) {
+        if (moderationResponse.data.results[0].flagged || highScores.found) {
             return {
                 status: 451,
                 data: {
                     success: false,
                     error: 'ERROR: Prompt is not suitable for completion.',
-                    categories: highScores.categories
-                }
+                    categories: highScores.categories,
+                },
             };
         }
 
         const completionResponse = await redirectCompletion(data);
 
-        cache.set(
-            prompt + (cacheSignature || ''),
-            completionResponse.data,
-        );
+        cache.set(prompt + (cacheSignature || ''), completionResponse.data);
 
         return {
             status: 200,
             data: {
                 success: true,
-                completion: completionResponse.data
-            }
+                completion: completionResponse.data,
+            },
         };
     } catch (error) {
         return {
             status: error.response.status,
             data: {
                 success: false,
-                error: 'ERROR: Completion went wrong: '
-                    + error.response.data.error.message
-            }
+                error: 'ERROR: Completion went wrong: ' + error.response.data.error.message,
+            },
         };
     }
 }

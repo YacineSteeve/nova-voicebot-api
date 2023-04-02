@@ -6,26 +6,23 @@ export async function getSpeech(request: Request, response: Response) {
     response.type('application/json');
 
     try {
-        const speechResponse = await apiService.speech({
-            text: request.body.text,
-            lang: request.body.lang,
-            speed: request.body.speed,
-            codec: request.body.codec,
-            format: request.body.format,
-            b64: request.body.b64
-        },
-            request.get('authorization')?.substring(7) || ''
+        const speechResponse = await apiService.speech(
+            {
+                text: request.body.text,
+                lang: request.body.lang,
+                speed: request.body.speed,
+                codec: request.body.codec,
+                format: request.body.format,
+                b64: request.body.b64,
+            },
+            request.get('authorization')?.substring(7) || '',
         );
 
-        response
-            .status(speechResponse.status)
-            .json(speechResponse.data);
+        response.status(speechResponse.status).json(speechResponse.data);
     } catch (error) {
-        response
-            .status(500)
-            .json({
-                success: false,
-                error: 'ERROR: ' + error
-            });
+        response.status(500).json({
+            success: false,
+            error: 'ERROR: ' + error,
+        });
     }
 }

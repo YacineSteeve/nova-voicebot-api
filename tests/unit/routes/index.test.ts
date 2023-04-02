@@ -1,8 +1,4 @@
-import {
-    apiRouter,
-    userRouter,
-    supportRouter
-} from '@routes/index';
+import { apiRouter, userRouter, supportRouter } from '@routes/index';
 
 describe('src/router/index', () => {
     test('apiRouter should be defined', () => {

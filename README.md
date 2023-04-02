@@ -1,6 +1,8 @@
 # NOVA API
 
-This is an Express API that provides various endpoints to __build applications__ that can generate __text completion__ and __speech synthesis__ using the __OpenAI's GPT-3 model__ and the __VoiceRSS API__.
+This is an Express API that provides various endpoints to **build applications** that can generate
+**text completion** and **speech synthesis** using the **OpenAI's GPT-3 model** and the **VoiceRSS
+API**.
 
 ## Usage
 
@@ -12,26 +14,30 @@ Here's a list of all the available endpoints:
 
 ### Welcome
 
-* #### GET /
+-   #### GET /
 
 This endpoint returns a welcome message to confirm that the API is up and running.
 
 ##### Request
-```curl  
-GET /    
+
+```curl
+GET /
 ```
 
 ##### Response
+
 ```
 Welcome to the NOVA API!
 ```
 
 ### Completion
 
-* #### POST /api/completion
-This endpoint takes in a request body containing a text prompt and returns the completion of that prompt using the OpenAI's GPT-3 model.
+-   #### POST /api/completion
+    This endpoint takes in a request body containing a text prompt and returns the completion of
+    that prompt using the OpenAI's GPT-3 model.
 
 ##### Request
+
 ```bash
 POST /api/completion
 Content-Type: application/json
@@ -44,6 +50,7 @@ Authorization: Bearer <token>
 ```
 
 ##### Response
+
 ```bash
 Accept: application/json
 
@@ -73,10 +80,12 @@ Accept: application/json
 
 ### Speech
 
-* #### POST /api/speech
-This endpoint takes in a request body containing a text input and returns the speech synthesis of that text.
+-   #### POST /api/speech
+    This endpoint takes in a request body containing a text input and returns the speech synthesis
+    of that text.
 
 ##### Request
+
 ```bash
 POST /api/speech
 Content-Type: application/json
@@ -93,6 +102,7 @@ Authorization: Bearer <token>
 ```
 
 ##### Response
+
 ```bash
 Accept: application/json
 
@@ -104,10 +114,11 @@ Accept: application/json
 
 ### User
 
-* #### POST /user/signup
-This endpoint creates a new user account.
+-   #### POST /user/signup
+    This endpoint creates a new user account.
 
 ##### Request
+
 ```bash
 POST /user/signup
 Content-Type: application/json
@@ -119,6 +130,7 @@ Content-Type: application/json
 ```
 
 ##### Response
+
 ```bash
 Accept: application/json
 
@@ -131,10 +143,11 @@ Accept: application/json
 }
 ```
 
-* #### POST /user/login
-This endpoint logs in an existing user.
+-   #### POST /user/login
+    This endpoint logs in an existing user.
 
 ##### Request
+
 ```bash
 POST /user/login
 Content-Type: application/json
@@ -143,9 +156,10 @@ Content-Type: application/json
     "email": string;
     "password": string;
 }
-````
+```
 
 ##### Response
+
 ```bash
 Accept: application/json
 
@@ -155,10 +169,11 @@ Accept: application/json
 }
 ```
 
-* #### POST /user/userinfo
-This endpoint returns user information based on the token provided in the request.
+-   #### POST /user/userinfo
+    This endpoint returns user information based on the token provided in the request.
 
 ##### Request
+
 ```bash
 POST /user/userinfo
 Content-Type: application/json
@@ -169,6 +184,7 @@ Content-Type: application/json
 ```
 
 ##### Response
+
 ```bash
 Accept: application/json
 
@@ -181,10 +197,11 @@ Accept: application/json
 }
 ```
 
-* #### POST /user/delete
-This endpoint deletes a user account based on the token provided in the request.
+-   #### POST /user/delete
+    This endpoint deletes a user account based on the token provided in the request.
 
 ##### Request
+
 ```bash
 POST /user/delete
 Content-Type: application/json
@@ -195,6 +212,7 @@ Content-Type: application/json
 ```
 
 ##### Response
+
 ```bash
 Accept: application/json
 
@@ -205,10 +223,11 @@ Accept: application/json
 
 ### Support
 
-* #### POST /support/contact
-This endpoint sends an email to the NOVA support team.
+-   #### POST /support/contact
+    This endpoint sends an email to the NOVA support team.
 
 ##### Request
+
 ```bash
 POST /support/contact
 Content-Type: application/json
@@ -222,6 +241,7 @@ Content-Type: application/json
 ```
 
 ##### Response
+
 ```bash
 Accept: application/json
 
@@ -251,12 +271,13 @@ Status: <status code>
 
 ### Prerequisites
 
-* [Node.js](https://nodejs.org/en/download/)
-* [npm](https://www.npmjs.com/get-npm) or [yarn](https://classic.yarnpkg.com/en/docs/install/#windows-stable)
-* [MongoDB](https://docs.mongodb.com/manual/installation/)
-* [OpenAI API key](https://platform.openai.com/docs/api-reference/introduction)
-* [VoiceRSS API key](https://www.voicerss.org/api/)
-* [Gmail account](https://support.google.com/mail/answer/56256?hl=en)
+-   [Node.js](https://nodejs.org/en/download/)
+-   [npm](https://www.npmjs.com/get-npm) or
+    [yarn](https://classic.yarnpkg.com/en/docs/install/#windows-stable)
+-   [MongoDB](https://docs.mongodb.com/manual/installation/)
+-   [OpenAI API key](https://platform.openai.com/docs/api-reference/introduction)
+-   [VoiceRSS API key](https://www.voicerss.org/api/)
+-   [Gmail account](https://support.google.com/mail/answer/56256?hl=en)
 
 ### Setup
 
@@ -274,8 +295,9 @@ yarn install
 
 3. Add environment variables:
 
-* Create a `.env` file in the root directory
-* add the environment variables listed in the [.env.example](https://github.com/YacineSteeve/nova-voicebot-api/blob/main/.env.example) file.
+-   Create a `.env` file in the root directory
+-   add the environment variables listed in the
+    [.env.example](https://github.com/YacineSteeve/nova-voicebot-api/blob/main/.env.example) file.
 
 > Note: `NODE_ENV` should be set to `development`.
 

@@ -12,7 +12,9 @@ export interface SpeechRequestData {
     b64?: string;
 }
 
-export async function redirectSpeech(data: SpeechRequestData): Promise<AxiosResponse<SpeechResponse>> {
+export async function redirectSpeech(
+    data: SpeechRequestData,
+): Promise<AxiosResponse<SpeechResponse>> {
     return await axios.request({
         method: 'GET',
         url: 'https://api.voicerss.org/',

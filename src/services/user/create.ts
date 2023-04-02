@@ -16,9 +16,9 @@ export async function createUser(data: RequestData): Promise<ServiceResponse> {
             data: {
                 success: false,
                 error: 'ERROR: Missing email to sign up.',
-                fields: ['email']
+                fields: ['email'],
             },
-        }
+        };
     }
 
     if (!password || password === '') {
@@ -27,13 +27,13 @@ export async function createUser(data: RequestData): Promise<ServiceResponse> {
             data: {
                 success: false,
                 error: 'ERROR: Missing password to sign up.',
-                fields: ['password']
+                fields: ['password'],
             },
-        }
+        };
     }
 
     try {
-        const existingUser = await User.findOne({email: email});
+        const existingUser = await User.findOne({ email: email });
 
         if (existingUser) {
             return {
@@ -41,15 +41,15 @@ export async function createUser(data: RequestData): Promise<ServiceResponse> {
                 data: {
                     success: false,
                     error: 'ERROR: User already exists.',
-                    fields: ['email']
+                    fields: ['email'],
                 },
-            }
+            };
         }
 
         const newUser = new User({
             username: email.substring(0, email.lastIndexOf('@')),
             email: email,
-            password: password
+            password: password,
         });
 
         const validationError = newUser.validateSync();
@@ -60,9 +60,9 @@ export async function createUser(data: RequestData): Promise<ServiceResponse> {
                 data: {
                     success: false,
                     error: 'ERROR: ' + validationError,
-                    fields: Object.keys(validationError.errors)
-                }
-            }
+                    fields: Object.keys(validationError.errors),
+                },
+            };
         }
 
         const user = await User.create({
@@ -78,16 +78,16 @@ export async function createUser(data: RequestData): Promise<ServiceResponse> {
                 user: {
                     username: user.username,
                     email: user.email,
-                }
-            }
-        }
+                },
+            },
+        };
     } catch (error) {
         return {
             status: 500,
             data: {
                 success: false,
-                error: 'ERROR: ' + error
-            }
-        }
+                error: 'ERROR: ' + error,
+            },
+        };
     }
 }

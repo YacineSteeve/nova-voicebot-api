@@ -1,7 +1,6 @@
 import cache from '@cache/index';
 import NodeCache from 'node-cache';
 
-
 describe('src/cache', () => {
     test('cache object should be defined', () => {
         expect(cache).toBeDefined();
@@ -11,11 +10,10 @@ describe('src/cache', () => {
         expect(cache).toBeInstanceOf(NodeCache);
     });
 
-
     describe('setting and getting keys', () => {
         const testCase = {
             key: 'myKey',
-            value: 'myValue'
+            value: 'myValue',
         };
 
         beforeAll(() => {
@@ -39,7 +37,7 @@ describe('src/cache', () => {
             expect(cache.get(testCase.key)).toEqual(testCase.value);
         });
 
-        test('key\'s value should have the right type', () => {
+        test("key's value should have the right type", () => {
             expect(typeof cache.get(testCase.key)).toBe(typeof testCase.value);
         });
 
@@ -52,7 +50,7 @@ describe('src/cache', () => {
     describe('expiration', () => {
         const testCase = {
             key: 'myKey',
-            value: 'myValue'
+            value: 'myValue',
         };
 
         beforeAll(() => {

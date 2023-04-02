@@ -35,6 +35,6 @@ app.listen(PORT, async () => {
     const db = await connection;
     console.log(
         `\n> Connected to the ${db.connection.name.toUpperCase()} database.` +
-        `\n> Server listening on port ${PORT}\n`
+            `\n> Server listening on port ${PORT}\n`,
     );
 });
