@@ -1,8 +1,8 @@
 import apiRouter from '@routes/api';
 
 describe('src/router/api', () => {
-    test('apiRouter should be defined', () => {
-        expect(apiRouter).toBeDefined();
+    test('apiRouter should be defined and exported', () => {
+        expect(apiRouter).toBeTruthy();
     });
 
     test('apiRouter should be a function', () => {

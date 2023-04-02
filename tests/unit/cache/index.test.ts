@@ -2,8 +2,8 @@ import cache from '@src/cache/index';
 import NodeCache from 'node-cache';
 
 describe('src/cache', () => {
-    test('cache object should be defined', () => {
-        expect(cache).toBeDefined();
+    test('cache object should be defined and exported', () => {
+        expect(cache).toBeTruthy();
     });
 
     test('cache should be a NodeCache object', () => {
@@ -30,7 +30,7 @@ describe('src/cache', () => {
         });
 
         test('key should have a value', () => {
-            expect(cache.get(testCase.key)).toBeDefined();
+            expect(cache.get(testCase.key)).toBeTruthy();
         });
 
         test('key should have the right value', () => {

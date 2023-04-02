@@ -1,15 +1,15 @@
 import { apiRouter, userRouter, supportRouter } from '@routes/index';
 
 describe('src/router/index', () => {
-    test('apiRouter should be defined', () => {
-        expect(apiRouter).toBeDefined();
+    test('apiRouter should be exported', () => {
+        expect(apiRouter).toBeTruthy();
     });
 
-    test('userRouter should be defined', () => {
-        expect(userRouter).toBeDefined();
+    test('userRouter should be exported', () => {
+        expect(userRouter).toBeTruthy();
     });
 
-    test('supportRouter should be defined', () => {
-        expect(supportRouter).toBeDefined();
+    test('supportRouter should be exported', () => {
+        expect(supportRouter).toBeTruthy();
     });
 });
