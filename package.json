@@ -20,7 +20,8 @@
     },
     "engines": {
         "node": ">=16.16.0",
-        "npm": ">=8.17.0"
+        "npm": ">=8.17.0",
+        "yarn": ">=1.22.19"
     },
     "dependencies": {
         "@jest/globals": "^29.5.0",
