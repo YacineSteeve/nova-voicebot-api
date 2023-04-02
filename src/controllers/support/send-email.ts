@@ -8,15 +8,11 @@ export async function sendEmail(request: Request, response: Response) {
     try {
         const result = await supportService.mail(request.body);
 
-        response
-            .status(result.status)
-            .json(result);
+        response.status(result.status).json(result);
     } catch (error) {
-        response
-            .status(500)
-            .json({
-                success: false,
-                error: 'ERROR: ' + error,
-            });
+        response.status(500).json({
+            success: false,
+            error: 'ERROR: ' + error,
+        });
     }
 }

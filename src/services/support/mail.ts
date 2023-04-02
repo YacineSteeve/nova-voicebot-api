@@ -37,7 +37,7 @@ export async function mail(data: RequestData): Promise<ServiceResponse> {
         };
     }
 
-    let canSendEmail: boolean = true;
+    let canSendEmail = true;
 
     transporter.verify((error) => {
         if (error) {
@@ -48,7 +48,7 @@ export async function mail(data: RequestData): Promise<ServiceResponse> {
                 data: {
                     success: false,
                     error: 'ERROR: Message can not be sent: ' + error.message,
-                }
+                },
             };
         }
     });
@@ -68,7 +68,7 @@ export async function mail(data: RequestData): Promise<ServiceResponse> {
             subject: subject || 'Unspecified',
             content: message,
         }),
-    }
+    };
 
     transporter.sendMail(mailOptions, (error, info) => {
         if (error) {
@@ -77,7 +77,7 @@ export async function mail(data: RequestData): Promise<ServiceResponse> {
                 data: {
                     success: false,
                     error: 'ERROR: Message can not be sent: ' + error.message,
-                }
+                },
             };
 
             return;
@@ -89,8 +89,8 @@ export async function mail(data: RequestData): Promise<ServiceResponse> {
                 success: true,
                 message: 'Message sent successfully',
                 info,
-            }
-        }
+            },
+        };
     });
 
     return response;

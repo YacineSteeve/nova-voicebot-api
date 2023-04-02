@@ -9,10 +9,20 @@
         "outDir": "dist",
         "baseUrl": ".",
         "paths": {
-            "*": ["node_modules/*"]
+            "*": ["node_modules/*"],
+            "@src/*": ["./src/*"],
+            "@cache/*": ["./src/cache/*"],
+            "@config/*": ["./src/config/*"],
+            "@controllers/*": ["./src/controllers/*"],
+            "@database/*": ["./src/database/*"],
+            "@middlewares/*": ["./src/middlewares/*"],
+            "@models/*": ["./src/models/*"],
+            "@routes/*": ["./src/routes/*"],
+            "@services/*": ["./src/services/*"],
+            "@types/*": ["./src/types/*"],
+            "@utils/*": ["./src/utils/*"],
+            "@tests/*": ["./tests/*"]
         }
     },
-    "include": [
-        "./**/*"
-    ]
+    "include": ["./**/*"]
 }

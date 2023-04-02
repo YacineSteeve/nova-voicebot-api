@@ -28,6 +28,6 @@ const contactEmailTemplate = (options: ContactEmailTemplateOptions): string => {
             </p>
         </div>
     `;
-}
+};
 
 export default contactEmailTemplate;

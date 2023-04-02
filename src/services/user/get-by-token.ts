@@ -1,4 +1,5 @@
 import * as JWT from 'jsonwebtoken';
+import type { JwtPayload } from 'jsonwebtoken';
 import { User } from '../../models/user';
 import type { ServiceResponse } from '../../types';
 
@@ -14,22 +15,22 @@ export async function getUserByToken(data: RequestData): Promise<ServiceResponse
             status: 401,
             data: {
                 success: false,
-                error: 'ERROR: Missing authentication token. Use /user/login to get one.'
+                error: 'ERROR: Missing authentication token. Use /user/login to get one.',
             },
         };
     }
 
-    let decoded: any = null;
+    let decoded: JwtPayload = null;
 
     try {
-        decoded = JWT.verify(token, process.env.JWT_SECRET);
+        decoded = JWT.verify(token, process.env.JWT_SECRET) as JwtPayload;
     } catch (error) {
         return {
             status: 500,
             data: {
                 success: false,
-                error: 'ERROR: Unable to verify token: ' + error
-            }
+                error: 'ERROR: Unable to verify token: ' + error,
+            },
         };
     }
 
@@ -38,8 +39,8 @@ export async function getUserByToken(data: RequestData): Promise<ServiceResponse
             status: 403,
             data: {
                 success: false,
-                error: 'ERROR: Invalid token.'
-            }
+                error: 'ERROR: Invalid token.',
+            },
         };
     }
 
@@ -63,16 +64,16 @@ export async function getUserByToken(data: RequestData): Promise<ServiceResponse
                 user: {
                     username: user.username,
                     email: user.email,
-                }
-            }
+                },
+            },
         };
     } catch (error) {
         return {
             status: 500,
             data: {
                 success: false,
-                error: 'ERROR: Unable to find user: ' + error
-            }
+                error: 'ERROR: Unable to find user: ' + error,
+            },
         };
     }
 }

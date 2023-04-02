@@ -8,18 +8,14 @@ export async function loginUser(request: Request, response: Response) {
     try {
         const res = await userService.getUser({
             email: request.body.email,
-            password: request.body.password
+            password: request.body.password,
         });
 
-        response
-            .status(res.status)
-            .send(res.data);
+        response.status(res.status).send(res.data);
     } catch (error) {
-        response
-            .status(500)
-            .send({
-                success: false,
-                error: 'ERROR: ' + error
-            });
+        response.status(500).send({
+            success: false,
+            error: 'ERROR: ' + error,
+        });
     }
 }

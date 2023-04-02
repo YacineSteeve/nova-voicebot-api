@@ -6,12 +6,17 @@
     "private": true,
     "main": "dist/main.js",
     "scripts": {
+        "clean": "rm -r dist/ || true",
+        "compile": "npx -p typescript tsc",
         "build": "yarn clean && yarn compile",
         "start": "yarn build && node .",
         "dev": "yarn build && nodemon .",
-        "test": "echo \"Error: no test specified\" && exit 1",
-        "clean": "rm -r dist/ || true",
-        "compile": "npx -p typescript tsc"
+        "test": "jest",
+        "test:cov": "jest --coverage",
+        "test:watch": "jest --watch",
+        "lint": "eslint . --ext .ts,.json",
+        "lint:fix": "eslint . --ext .ts,.json --fix",
+        "format": "prettier --write ."
     },
     "engines": {
         "node": ">=16.16.0",
@@ -40,15 +45,23 @@
         "tsc": "^2.0.4"
     },
     "devDependencies": {
+        "@jest/globals": "^29.5.0",
         "@types/bcryptjs": "^2.4.2",
         "@types/cors": "^2.8.13",
         "@types/dotenv": "^8.2.0",
         "@types/express": "^4.17.15",
+        "@types/jest": "^29.5.0",
         "@types/jsonwebtoken": "^9.0.1",
         "@types/morgan": "^1.9.4",
         "@types/node": "^18.11.18",
         "@types/nodemailer": "^6.4.7",
+        "@typescript-eslint/eslint-plugin": "^5.57.0",
+        "@typescript-eslint/parser": "^5.57.0",
+        "eslint": "^8.37.0",
+        "jest": "^29.5.0",
         "nodemon": "^2.0.20",
+        "prettier": "^2.8.7",
+        "ts-jest": "^29.0.5",
         "ts-node": "^10.9.1",
         "typescript": "^5.0.2"
     },

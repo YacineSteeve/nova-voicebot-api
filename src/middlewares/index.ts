@@ -1,3 +1,3 @@
 import { authorizeApiRequest } from './authorization';
 
-export { authorizeApiRequest }
+export { authorizeApiRequest };

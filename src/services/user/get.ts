@@ -12,12 +12,12 @@ export async function getUser(data: RequestData): Promise<ServiceResponse> {
     const { email, password } = data;
 
     if (!email || email === '') {
-        return{
+        return {
             status: 400,
             data: {
                 success: false,
                 error: 'ERROR: Missing email address to login.',
-                fields: ['email']
+                fields: ['email'],
             },
         };
     }
@@ -28,13 +28,13 @@ export async function getUser(data: RequestData): Promise<ServiceResponse> {
             data: {
                 success: false,
                 error: 'ERROR: Missing password to login.',
-                fields: ['password']
+                fields: ['password'],
             },
         };
     }
 
     try {
-        const user = await User.findOne({email: email});
+        const user = await User.findOne({ email: email });
 
         if (!user) {
             return {
@@ -42,7 +42,7 @@ export async function getUser(data: RequestData): Promise<ServiceResponse> {
                 data: {
                     success: false,
                     error: 'ERROR: User not found.',
-                    fields: ['email']
+                    fields: ['email'],
                 },
             };
         }
@@ -53,7 +53,7 @@ export async function getUser(data: RequestData): Promise<ServiceResponse> {
                 data: {
                     success: false,
                     error: 'ERROR: Wrong password.',
-                    fields: ['password']
+                    fields: ['password'],
                 },
             };
         }
@@ -61,11 +61,11 @@ export async function getUser(data: RequestData): Promise<ServiceResponse> {
         const token = JWT.sign(
             {
                 id: user._id,
-                email: user.email
+                email: user.email,
             },
             process.env.JWT_SECRET,
             {
-                expiresIn: '1d'
+                expiresIn: '1d',
             },
         );
 
@@ -74,8 +74,8 @@ export async function getUser(data: RequestData): Promise<ServiceResponse> {
             data: {
                 success: true,
                 token,
-            }
-        }
+            },
+        };
     } catch (error) {
         return {
             status: 500,

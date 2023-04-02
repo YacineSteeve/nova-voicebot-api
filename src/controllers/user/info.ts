@@ -7,18 +7,14 @@ export async function infoUser(request: Request, response: Response) {
 
     try {
         const res = await userService.getUserByToken({
-            token: request.body.token
+            token: request.body.token,
         });
 
-        response
-            .status(res.status)
-            .send(res.data);
+        response.status(res.status).send(res.data);
     } catch (error) {
-        response
-            .status(500)
-            .send({
-                success: false,
-                error: 'ERROR: ' + error
-            });
+        response.status(500).send({
+            success: false,
+            error: 'ERROR: ' + error,
+        });
     }
 }

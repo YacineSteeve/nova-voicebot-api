@@ -9,6 +9,6 @@ const transport = {
         pass: process.env.SMTP_PASSWORD,
     },
     secure: true,
-}
+};
 
 export default transport;
