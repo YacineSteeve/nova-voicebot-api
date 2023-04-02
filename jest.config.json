@@ -17,5 +17,6 @@
     },
     "coverageDirectory": "./coverage",
     "collectCoverageFrom": ["./src/**/*.ts"],
-    "coveragePathIgnorePatterns": ["./src/config"]
+    "coveragePathIgnorePatterns": ["./src/config"],
+    "testPathIgnorePatterns" : ["<rootDir>/dist/"]
 }
