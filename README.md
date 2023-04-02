@@ -1,4 +1,13 @@
-# NOVA API
+<h1 align="center">NOVA API</h1>
+
+![Test](https://github.com/YacineSteeve/nova-voicebot-api/actions/workflows/test.yaml/badge.svg)
+![Release (latest)](https://img.shields.io/github/v/release/YacineSteeve/nova-voicebot-api?include_prereleases)
+
+<div align="center">
+    <img alt="Logo" src="https://user-images.githubusercontent.com/64146788/229367526-bf42c308-7362-4c45-b50d-4dbe5ee1da88.svg" width="200px" />
+</div>
+
+<br/><br/>
 
 This is an Express API that provides various endpoints to **build applications** that can generate
 **text completion** and **speech synthesis** using the **OpenAI's GPT-3 model** and the **VoiceRSS
