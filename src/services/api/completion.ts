@@ -1,8 +1,7 @@
 import { redirectCompletion, redirectModeration } from './redirections';
 import type { CompletionRequestData } from './redirections/completion';
-import type { ServiceResponse, CompletionResponse } from '../../types';
-import cache from '../../cache';
-import highScoreCategories from '../../utils/high-score-categories';
+import cache from '@src/cache';
+import highScoreCategories from '@utils/high-score-categories';
 
 export async function completion(
     data: CompletionRequestData,

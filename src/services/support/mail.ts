@@ -2,7 +2,6 @@ import type { SendMailOptions } from 'nodemailer';
 import * as process from 'process';
 import { transporter } from './transporter';
 import { contactEmailTemplate } from './templates';
-import type { ServiceResponse } from '../../types';
 
 interface RequestData {
     email: string;

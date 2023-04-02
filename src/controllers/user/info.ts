@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import userService from '../../services/user';
+import userService from '@services/user';
 
 export async function infoUser(request: Request, response: Response) {
     request.accepts('application/json');

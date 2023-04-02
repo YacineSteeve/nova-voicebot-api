@@ -1,5 +1,5 @@
 import type { Request, Response } from 'express';
-import supportService from '../../services/support';
+import supportService from '@services/support';
 
 export async function sendEmail(request: Request, response: Response) {
     request.accepts('application/json');

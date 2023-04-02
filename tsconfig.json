@@ -11,7 +11,6 @@
         "paths": {
             "*": ["node_modules/*"],
             "@src/*": ["./src/*"],
-            "@cache/*": ["./src/cache/*"],
             "@config/*": ["./src/config/*"],
             "@controllers/*": ["./src/controllers/*"],
             "@database/*": ["./src/database/*"],

@@ -1,5 +1,5 @@
 import type { Request, Response } from 'express';
-import apiService from '../../services/api';
+import apiService from '@services/api';
 
 export async function getCompletion(request: Request, response: Response) {
     request.accepts('application/json');

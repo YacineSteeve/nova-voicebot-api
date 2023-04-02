@@ -1,7 +1,6 @@
 import axios from 'axios';
 import type { AxiosResponse } from 'axios';
 import * as process from 'process';
-import { SpeechResponse } from '../../../types';
 
 export interface SpeechRequestData {
     text: string;

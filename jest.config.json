@@ -5,7 +5,6 @@
     "rootDir": ".",
     "moduleNameMapper": {
         "^@src/(.*)$": "<rootDir>/src/$1",
-        "^@cache/(.*)$": "<rootDir>/src/cache/$1",
         "^@config/(.*)$": "<rootDir>/src/config/$1",
         "^@controllers/(.*)$": "<rootDir>/src/controllers/$1",
         "^@database/(.*)$": "<rootDir>/src/database/$1",
