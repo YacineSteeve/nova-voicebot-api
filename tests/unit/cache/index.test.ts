@@ -1,4 +1,4 @@
-import cache from '@cache/index';
+import cache from '@src/cache/index';
 import NodeCache from 'node-cache';
 
 describe('src/cache', () => {

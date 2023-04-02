@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import supportController from '../controllers/support';
+import supportController from '@controllers/support';
 
 const supportRouter = Router();
 

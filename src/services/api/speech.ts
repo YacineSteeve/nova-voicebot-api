@@ -1,7 +1,6 @@
 import { redirectSpeech } from './redirections';
 import type { SpeechRequestData } from './redirections/speech';
-import type { ServiceResponse, SpeechResponse } from '../../types';
-import cache from '../../cache';
+import cache from '@src/cache';
 
 export async function speech(
     data: SpeechRequestData,

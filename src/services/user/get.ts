@@ -1,7 +1,6 @@
 import * as Bcrypt from 'bcryptjs';
 import * as JWT from 'jsonwebtoken';
-import { User } from '../../models/user';
-import type { ServiceResponse } from '../../types';
+import { User } from '@models/user';
 
 interface RequestData {
     email: string;

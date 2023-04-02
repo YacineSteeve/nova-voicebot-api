@@ -1,7 +1,6 @@
 import { Configuration, OpenAIApi } from 'openai';
 import type { AxiosResponse } from 'axios';
 import * as process from 'process';
-import type { CompletionResponse } from '../../../types';
 
 const openaiConfiguration = new Configuration({
     apiKey: process.env.OPENAI_API_KEY,
