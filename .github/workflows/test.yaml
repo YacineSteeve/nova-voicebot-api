@@ -9,7 +9,10 @@ jobs:
     test:
         runs-on: ubuntu-latest
         steps:
-            - uses: actions/checkout@v3
+            - env:
+                  TEST_DATABASE_URI: ${{ secrets.TEST_DATABASE_URI }}
+            - name: Checkout
+              uses: actions/checkout@v3
             - name: Setup Node
               uses: actions/setup-node@v3
               with:
