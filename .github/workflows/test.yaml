@@ -9,7 +9,8 @@ jobs:
     test:
         runs-on: ubuntu-latest
         steps:
-            - uses: actions/checkout@v3
+            - name: Checkout
+              uses: actions/checkout@v3
             - name: Setup Node
               uses: actions/setup-node@v3
               with:
@@ -18,4 +19,6 @@ jobs:
             - name: Install modules
               run: yarn install
             - name: Run tests (using Jest)
+              env:
+                  TEST_DATABASE_URI: ${{ secrets.TEST_DATABASE_URI }}
               run: yarn test
