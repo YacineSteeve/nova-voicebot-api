@@ -2,14 +2,14 @@ import '@config/env-config';
 import { connection } from '@database/index';
 import type { Mongoose } from 'mongoose';
 
-describe('Database', () => {
-    test('should be defined and exported', async () => {
+describe('src/database', () => {
+    test('connection object should be defined and exported', async () => {
         expect(connection).toBeTruthy();
     });
 
     let database: Mongoose = null;
 
-    describe('when connected', () => {
+    describe('Database', () => {
         beforeAll(async () => {
             database = await connection;
         });
@@ -41,7 +41,7 @@ describe('Database', () => {
         });
     });
 
-    describe('when disconnected', () => {
+    describe('Database', () => {
         test('should be disconnected', async () => {
             expect(database.connection.readyState).toBe(0);
         });

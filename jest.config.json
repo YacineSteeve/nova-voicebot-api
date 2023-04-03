@@ -15,8 +15,8 @@
         "^@utils/(.*)$": "<rootDir>/src/utils/$1",
         "^@tests/(.*)$": "<rootDir>/tests/$1"
     },
-    "coverageDirectory": "./coverage",
-    "collectCoverageFrom": ["./src/**/*.ts"],
-    "coveragePathIgnorePatterns": ["./src/config"],
+    "coverageDirectory": "<rootDir>/coverage",
+    "collectCoverageFrom": ["<rootDir>/src/**/*.ts", "!<rootDir>/src/**/*.d.ts"],
+    "coveragePathIgnorePatterns": ["<rootDir>/src/config"],
     "testPathIgnorePatterns" : ["<rootDir>/dist/"]
 }
