@@ -5,7 +5,7 @@ jest.mock('@services/support/transporter');
 
 const { transporter: mockedTransporter } = require('@services/support/transporter');
 
-describe('mail function', () => {
+describe('src/services/support/mail', () => {
     beforeEach(() => {
         jest.resetAllMocks();
     });
