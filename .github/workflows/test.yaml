@@ -21,4 +21,6 @@ jobs:
             - name: Run tests (using Jest)
               env:
                   TEST_DATABASE_URI: ${{ secrets.TEST_DATABASE_URI }}
+                  SMTP_USER: ${{ secrets.SMTP_USER }}
+                  SMTP_PASSWORD: ${{ secrets.SMTP_PASSWORD }}
               run: yarn test
