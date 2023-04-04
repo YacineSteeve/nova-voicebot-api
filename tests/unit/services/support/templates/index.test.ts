@@ -9,7 +9,7 @@ describe('src/services/support/templates/index', () => {
         'contactEmailTemplate',
     ];
 
-    test('should have alltemplates', () => {
+    test('should have all templates', () => {
         Object.values(templates).forEach((template) => {
             expect(templateNames).toContain(template.name);
         });
