@@ -34,7 +34,6 @@
         "@types/morgan": "^1.9.4",
         "@types/node": "^18.11.18",
         "@types/nodemailer": "^6.4.7",
-        "@types/xmldom": "^0.1.31",
         "axios": "^1.2.3",
         "bcryptjs": "^2.4.3",
         "cors": "^2.8.5",
@@ -59,7 +58,6 @@
         "@types/morgan": "^1.9.4",
         "@types/node": "^18.11.18",
         "@types/nodemailer": "^6.4.7",
-        "@types/xmldom": "^0.1.31",
         "@typescript-eslint/eslint-plugin": "^5.57.0",
         "@typescript-eslint/parser": "^5.57.0",
         "cross-env": "^7.0.3",
@@ -70,8 +68,7 @@
         "ts-jest": "^29.0.5",
         "ts-node": "^10.9.1",
         "tsc-alias": "^1.8.5",
-        "typescript": "^5.0.2",
-        "xmldom": "^0.6.0"
+        "typescript": "^5.0.2"
     },
     "nodemonConfig": {
         "ext": "ts,js,json"

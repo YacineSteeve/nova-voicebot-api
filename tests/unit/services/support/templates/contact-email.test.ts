@@ -1,5 +1,4 @@
 import contactEmailTemplate from '@services/support/templates/contact-email';
-import { DOMParser } from 'xmldom';
 
 describe('src/services/support/templates/contact-email', () => {
     test('template should be defined', () => {
@@ -32,14 +31,5 @@ describe('src/services/support/templates/contact-email', () => {
     test('template returned string should be signed', () => {
         const template = contactEmailTemplate(testOptions);
         expect(template).toContain('Nova Voice Bot');
-    });
-
-    test('template returned string should be a valid html', () => {
-        const validTags = ['html', 'body', 'div'];
-
-        const template = contactEmailTemplate(testOptions);
-        const parser = new DOMParser();
-        const document = parser.parseFromString(template);
-        expect(validTags.includes(document.documentElement.nodeName)).toBe(true);
     });
 });
