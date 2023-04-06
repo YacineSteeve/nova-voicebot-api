@@ -1,5 +1,5 @@
 import '@config/env-config';
-import { request, testUserCredentials, authToken } from '@tests/integration/request-config';
+import { request, testUserCredentials, authToken } from '@tests/integration/request-config.test';
 import { User } from '@models/user';
 import { connection } from '@database/index';
 import type { Mongoose } from 'mongoose';

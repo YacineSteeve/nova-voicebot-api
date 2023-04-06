@@ -1,6 +1,6 @@
 import '@config/env-config';
 // import supportService from '@services/support';
-import { request } from '@tests/integration/request-config';
+import { request } from '@tests/integration/request-config.test';
 
 jest.mock('@services/support/mail');
 
