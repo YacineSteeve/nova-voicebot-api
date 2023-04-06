@@ -1,5 +1,5 @@
 import '@config/env-config';
-import { request } from '@tests/integration/request-config';
+import { request } from '@tests/integration/request-config.test';
 import userController from '@controllers/user';
 import userService from '@services/user';
 

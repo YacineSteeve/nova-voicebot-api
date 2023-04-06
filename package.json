@@ -34,6 +34,7 @@
         "@types/morgan": "^1.9.4",
         "@types/node": "^18.11.18",
         "@types/nodemailer": "^6.4.7",
+        "@types/supertest": "^2.0.12",
         "axios": "^1.2.3",
         "bcryptjs": "^2.4.3",
         "cors": "^2.8.5",

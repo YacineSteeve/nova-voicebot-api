@@ -1,5 +1,5 @@
 import '@config/env-config';
-import { request, authToken } from '@tests/integration/request-config';
+import { request, authToken } from '@tests/integration/request-config.test';
 import apiController from '@controllers/api';
 import apiService from '@services/api';
 
