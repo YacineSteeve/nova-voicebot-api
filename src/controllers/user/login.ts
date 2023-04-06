@@ -15,7 +15,7 @@ export async function loginUser(request: Request, response: Response) {
     } catch (error) {
         response.status(500).send({
             success: false,
-            error: 'ERROR: ' + error,
+            error: 'ERROR: ' + error.message,
         });
     }
 }

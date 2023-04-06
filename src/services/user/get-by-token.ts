@@ -25,7 +25,7 @@ export async function getUserByToken(data: RequestData): Promise<ServiceResponse
         decoded = JWT.verify(token, process.env.JWT_SECRET) as JwtPayload;
     } catch (error) {
         return {
-            status: 500,
+            status: 403,
             data: {
                 success: false,
                 error: 'ERROR: Unable to verify token: ' + error,
@@ -44,7 +44,7 @@ export async function getUserByToken(data: RequestData): Promise<ServiceResponse
     }
 
     try {
-        const user = await User.findOne({ _id: decoded.id });
+        const user = await User.findOne({ email: decoded.email });
 
         if (!user) {
             return {
