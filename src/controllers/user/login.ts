@@ -1,21 +1,10 @@
-import type { Request, Response } from 'express';
+import type { Request } from 'express';
+import createControllerMethod from '@controllers/controller';
 import userService from '@services/user';
 
-export async function loginUser(request: Request, response: Response) {
-    request.accepts('application/json');
-    response.type('application/json');
-
-    try {
-        const res = await userService.getUser({
-            email: request.body.email,
-            password: request.body.password,
-        });
-
-        response.status(res.status).send(res.data);
-    } catch (error) {
-        response.status(500).send({
-            success: false,
-            error: 'ERROR: ' + error.message,
-        });
-    }
-}
+export const loginUser = createControllerMethod(async (request: Request) => {
+    return await userService.getUser({
+        email: request.body.email,
+        password: request.body.password,
+    });
+});
