@@ -18,5 +18,5 @@
     "coverageDirectory": "<rootDir>/coverage",
     "collectCoverageFrom": ["<rootDir>/src/**/*.ts", "!<rootDir>/src/**/*.d.ts"],
     "coveragePathIgnorePatterns": ["<rootDir>/src/config"],
-    "testPathIgnorePatterns" : ["<rootDir>/dist/"]
+    "testPathIgnorePatterns": ["<rootDir>/dist/"]
 }
