@@ -5,9 +5,7 @@ describe('src/services/support/templates/index', () => {
         expect(templates).toBeTruthy();
     });
 
-    const templateNames = [
-        'contactEmailTemplate',
-    ];
+    const templateNames = ['contactEmailTemplate'];
 
     test('should have all templates', () => {
         Object.values(templates).forEach((template) => {

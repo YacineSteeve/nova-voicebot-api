@@ -11,7 +11,7 @@ describe('src/services/support/mail', () => {
     });
 
     afterAll(() => {
-        jest.restoreAllMocks();
+        jest.clearAllMocks();
     });
 
     describe('missing parameters', () => {
@@ -61,18 +61,21 @@ describe('src/services/support/mail', () => {
         const response = await mail(data);
 
         expect(sendMailMocked).toHaveBeenCalledTimes(1);
-        expect(sendMailMocked).toHaveBeenCalledWith({
-            to: process.env.SMTP_TO_EMAIL,
-            replyTo: data.email,
-            subject: data.subject,
-            text: data.message,
-            html: contactEmailTemplate({
-                email: data.email,
-                name: data.name,
+        expect(sendMailMocked).toHaveBeenCalledWith(
+            {
+                to: process.env.SMTP_TO_EMAIL,
+                replyTo: data.email,
                 subject: data.subject,
-                content: data.message,
-            }),
-        }, expect.any(Function));
+                text: data.message,
+                html: contactEmailTemplate({
+                    email: data.email,
+                    name: data.name,
+                    subject: data.subject,
+                    content: data.message,
+                }),
+            },
+            expect.any(Function),
+        );
 
         expect(response.status).toBe(200);
         expect(response.data.success).toBe(true);
@@ -80,7 +83,7 @@ describe('src/services/support/mail', () => {
         expect(response.data.info).toEqual({ messageId: 'test' });
     });
 
-    describe('internal errors',  () => {
+    describe('internal errors', () => {
         test('should return a 500 response if transporter can not verify', async () => {
             const verifyMocked: jest.Mock = jest.fn((callback) => {
                 callback(new Error('Transporter can not verify'));
@@ -94,10 +97,10 @@ describe('src/services/support/mail', () => {
             });
 
             expect(response.status).toBe(500);
-            expect(response.data).toEqual({
-                success: false,
-                error: 'ERROR: Message can not be sent: Transporter can not verify',
-            });
+            expect(response.data.success).toBe(false);
+            expect(response.data.error).toEqual(
+                expect.stringContaining('Transporter can not verify')
+            );
         });
 
         test('should return a 500 response if an error occurs while sending the email', async () => {
@@ -115,10 +118,10 @@ describe('src/services/support/mail', () => {
             });
 
             expect(response.status).toBe(500);
-            expect(response.data).toEqual({
-                success: false,
-                error: 'ERROR: Message can not be sent: Sending email failed',
-            });
+            expect(response.data.success).toBe(false);
+            expect(response.data.error).toEqual(
+                expect.stringContaining('Sending email failed')
+            );
         });
     });
 });

@@ -6,12 +6,7 @@ describe('App', () => {
     });
 
     test('should have required properties', () => {
-        const requiredProperties = [
-            'use',
-            'get',
-            'post',
-            'listen',
-        ];
+        const requiredProperties = ['use', 'get', 'post', 'listen'];
 
         requiredProperties.forEach((property) => {
             expect(app).toHaveProperty(property);
