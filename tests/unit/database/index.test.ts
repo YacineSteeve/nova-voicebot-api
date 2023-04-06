@@ -15,7 +15,7 @@ describe('src/database', () => {
         });
 
         afterAll(async () => {
-            await database.disconnect();
+            await database.connection.close();
         });
 
         test('should be defined', async () => {
@@ -29,14 +29,12 @@ describe('src/database', () => {
 
         test('should have a name', async () => {
             expect(database.connection.name).toBeTruthy();
-            expect(typeof database.connection.name).toEqual("string");
+            expect(typeof database.connection.name).toEqual('string');
         });
 
         const collections = ['users'];
 
-        test.each(
-            collections
-        )('should have a "%s" collection', async (collection) => {
+        test.each(collections)('should have a "%s" collection', async (collection) => {
             expect(database.connection.db.collection(collection)).toBeTruthy();
         });
     });

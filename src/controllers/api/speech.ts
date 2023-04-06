@@ -22,7 +22,7 @@ export async function getSpeech(request: Request, response: Response) {
     } catch (error) {
         response.status(500).json({
             success: false,
-            error: 'ERROR: ' + error,
+            error: 'ERROR: ' + error.message,
         });
     }
 }

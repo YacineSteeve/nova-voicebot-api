@@ -57,7 +57,7 @@ export async function speech(
             status: 500,
             data: {
                 success: false,
-                error: 'ERROR: ' + error,
+                error: 'ERROR: ' + error.message,
             },
         };
     }

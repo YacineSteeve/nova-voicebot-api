@@ -6,13 +6,13 @@ export async function sendEmail(request: Request, response: Response) {
     response.type('application/json');
 
     try {
-        const result = await supportService.mail(request.body);
+        const sendEmailResponse = await supportService.mail(request.body);
 
-        response.status(result.status).json(result);
+        response.status(sendEmailResponse.status).json(sendEmailResponse.data);
     } catch (error) {
         response.status(500).json({
             success: false,
-            error: 'ERROR: ' + error,
+            error: 'ERROR: ' + error.message,
         });
     }
 }

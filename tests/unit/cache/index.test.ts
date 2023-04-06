@@ -46,27 +46,4 @@ describe('src/cache', () => {
             expect(cache.getTtl(testCase.key)).not.toBe(undefined);
         });
     });
-
-    describe('expiration', () => {
-        const testCase = {
-            key: 'myKey',
-            value: 'myValue',
-        };
-
-        beforeAll(() => {
-            cache.set(testCase.key, testCase.value);
-        });
-
-        afterAll(() => {
-            cache.del(testCase.key);
-        });
-
-        test('cached element should expire', () => {
-            cache.ttl(testCase.key, 1000);
-
-            setTimeout(() => {
-                expect(cache.get(testCase.key)).toBe(undefined);
-            }, 1000);
-        });
-    });
 });

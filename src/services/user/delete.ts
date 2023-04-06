@@ -57,7 +57,7 @@ export async function deleteUser(data: RequestData): Promise<ServiceResponse> {
     }
 
     try {
-        const user = await User.findOne({ _id: decoded.id });
+        const user = await User.findOne({ email: decoded.email });
 
         if (!user) {
             return {
@@ -80,7 +80,7 @@ export async function deleteUser(data: RequestData): Promise<ServiceResponse> {
             };
         }
 
-        await User.deleteOne({ _id: decoded.id });
+        await User.deleteOne({ email: decoded.email });
 
         return {
             status: 200,

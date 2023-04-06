@@ -12,7 +12,7 @@ interface RequestData {
 
 export async function mail(data: RequestData): Promise<ServiceResponse> {
     const { email, message, subject, name } = data;
-    let response: ServiceResponse = null;
+    let response: ServiceResponse = {} as ServiceResponse;
 
     if (!email || email === '') {
         return {
@@ -38,7 +38,7 @@ export async function mail(data: RequestData): Promise<ServiceResponse> {
 
     let canSendEmail = true;
 
-    transporter.verify((error) => {
+    await transporter.verify((error) => {
         if (error) {
             canSendEmail = false;
 
@@ -51,10 +51,6 @@ export async function mail(data: RequestData): Promise<ServiceResponse> {
             };
         }
     });
-
-    if (!canSendEmail) {
-        return response;
-    }
 
     const mailOptions: SendMailOptions = {
         to: process.env.SMTP_TO_EMAIL,
@@ -69,28 +65,30 @@ export async function mail(data: RequestData): Promise<ServiceResponse> {
         }),
     };
 
-    transporter.sendMail(mailOptions, (error, info) => {
-        if (error) {
+    if (canSendEmail) {
+        await transporter.sendMail(mailOptions, (error, info) => {
+            if (error) {
+                response = {
+                    status: 500,
+                    data: {
+                        success: false,
+                        error: 'ERROR: Message can not be sent: ' + error.message,
+                    },
+                };
+
+                return;
+            }
+
             response = {
-                status: 500,
+                status: 200,
                 data: {
-                    success: false,
-                    error: 'ERROR: Message can not be sent: ' + error.message,
+                    success: true,
+                    message: 'Message sent successfully',
+                    info,
                 },
             };
-
-            return;
-        }
-
-        response = {
-            status: 200,
-            data: {
-                success: true,
-                message: 'Message sent successfully',
-                info,
-            },
-        };
-    });
+        });
+    }
 
     return response;
 }
